@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /README.md
+Disallow: /.github/
 
 Sitemap: https://rdagmr98.github.io/autom.lab/sitemap.xml
