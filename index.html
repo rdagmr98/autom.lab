@@ -4,35 +4,40 @@
 <meta charset="UTF-8">
 <script>if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Automazione Aziendale | autom.lab — Script e Software su Misura</title>
-<meta name="description" content="autom.lab: automazione aziendale e software su misura. Elimina task ripetitivi in ufficio — PDF, Excel, conteggi, confronti documenti. Più veloce, nessun abbonamento.">
-<meta name="keywords" content="automazione aziendale, automazione, script automazione, task ripetitivi, autom.lab, sistemi su misura, software su misura, automazione ufficio">
+<title>Automazione Aziendale | autom.lab — Script, Software e Siti su Misura</title>
+<meta name="description" content="autom.lab: automazione aziendale, software desktop e siti web su misura. Elimina task ripetitivi — PDF, Excel, conteggi, confronti. Più veloce, nessun abbonamento.">
+<meta name="keywords" content="automazione aziendale, software su misura, siti web, script automazione, task ripetitivi, autom.lab">
 <meta name="application-name" content="autom.lab">
 <meta name="apple-mobile-web-app-title" content="autom.lab">
 <link rel="canonical" href="https://rdagmr98.github.io/autom.lab/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rdagmr98.github.io/autom.lab/">
-<meta property="og:title" content="Automazione Aziendale | autom.lab — Software su Misura">
-<meta property="og:description" content="Script e programmi su misura per automatizzare task ripetitivi in ufficio. PDF, Excel, conteggi, confronti — più veloce, nessun abbonamento.">
+<meta property="og:title" content="autom.lab — Software, automazione e siti su misura">
+<meta property="og:description" content="Script, programmi e siti web costruiti sul tuo flusso reale. PDF, Excel, conteggi, confronti — senza abbonamenti generici.">
 <meta property="og:image" content="https://rdagmr98.github.io/autom.lab/assets/logo-mark.png">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="autom.lab">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Automazione Aziendale | autom.lab">
-<meta name="twitter:description" content="Software su misura per eliminare task ripetitivi in ufficio. Scrivimi su Instagram.">
+<meta name="twitter:title" content="autom.lab — Software e siti su misura">
+<meta name="twitter:description" content="Automazione, software desktop e web craft. Scrivimi su Instagram.">
 <meta name="twitter:image" content="https://rdagmr98.github.io/autom.lab/assets/logo-mark.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"autom.lab","url":"https://rdagmr98.github.io/autom.lab/","inLanguage":"it-IT"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"autom.lab","description":"Automazione aziendale e software su misura per eliminare task ripetitivi in ufficio.","url":"https://rdagmr98.github.io/autom.lab/","image":"https://rdagmr98.github.io/autom.lab/assets/logo-mark.png","sameAs":["https://www.instagram.com/autom.lab/"],"areaServed":"IT","knowsAbout":["automazione aziendale","script automazione","software su misura","task ripetitivi"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"autom.lab","description":"Automazione aziendale, software desktop e siti web su misura.","url":"https://rdagmr98.github.io/autom.lab/","image":"https://rdagmr98.github.io/autom.lab/assets/logo-mark.png","sameAs":["https://www.instagram.com/autom.lab/"],"areaServed":"IT","knowsAbout":["automazione aziendale","software su misura","siti web","script automazione"]}
 </script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="assets/hacker-silhouette.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2556899149200560" crossorigin="anonymous"></script>
 </head>
 <body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="page">
 
 <header class="nav">
   <div class="nav-inner">
@@ -40,6 +45,11 @@
       <img class="logo-mark" src="assets/logo-mark.png" alt="" aria-hidden="true">
       autom<span class="dot">.</span>lab
     </a>
+    <ul class="nav-links">
+      <li><a href="#craft">Competenze</a></li>
+      <li><a href="#esempi">Esempi</a></li>
+      <li><a href="#come-funziona">Come funziona</a></li>
+    </ul>
     <a href="https://www.instagram.com/autom.lab/" target="_blank" rel="noopener" class="btn btn-nav">Scrivimi</a>
   </div>
 </header>
@@ -47,112 +57,169 @@
 <main id="top">
 
   <section class="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="hero-inner">
-      <p class="eyebrow">Automazione software su misura</p>
-      <h1>autom.lab — meno tempo perso.<br>Più lavoro fatto.</h1>
-      <p class="hero-sub">Automazione aziendale su misura: automatizzo le attività ripetitive del tuo lavoro con un programma costruito per te — più veloce, più semplice, senza passaggi inutili.</p>
-      <div class="hero-cta">
-        <a href="https://www.instagram.com/autom.lab/" target="_blank" rel="noopener" class="btn btn-primary">Raccontami il tuo problema</a>
-        <a href="#esempi" class="btn btn-ghost">Vedi degli esempi</a>
+    <div class="hero-grid">
+      <div class="reveal">
+        <p class="brand-lockup">autom<span class="dot">.</span>lab</p>
+        <h1>Software e siti che risolvono lavoro vero.</h1>
+        <p class="hero-sub">Automazione desktop, strumenti su misura e web craft: costruisco ciò che ti toglie ore — sul tuo flusso, non su un SaaS generico.</p>
+        <div class="hero-cta">
+          <a href="https://www.instagram.com/autom.lab/" target="_blank" rel="noopener" class="btn btn-primary">Raccontami il problema</a>
+          <a href="#esempi" class="btn btn-ghost">Vedi esempi reali</a>
+        </div>
       </div>
-      <img class="hero-visual" src="assets/hero-illustration.png" alt="" aria-hidden="true">
+
+      <div class="stage-wrap reveal" aria-hidden="true">
+        <div class="stage" id="stage">
+          <div class="panel3d p-code">
+            <div class="chrome"><span class="dotrow"><span></span><span></span><span></span></span> extract.py</div>
+            <div class="body mono">
+              <div><span class="cmt"># da PDF → tabella pronta</span></div>
+              <div><span class="kw">for</span> doc <span class="kw">in</span> batch:</div>
+              <div>&nbsp;&nbsp;rows = parse(<span class="str">doc</span>)</div>
+              <div>&nbsp;&nbsp;export.xlsx(rows)</div>
+              <div><span class="kw">print</span>(<span class="str">"done in 4s"</span>)</div>
+            </div>
+          </div>
+          <div class="panel3d p-sheet">
+            <div class="chrome"><span class="dotrow"><span></span><span></span><span></span></span> payroll.xlsx</div>
+            <div class="body">
+              <div class="sheet-grid">
+                <i class="on"></i><i></i><i class="mid"></i><i></i>
+                <i></i><i class="on"></i><i></i><i class="mid"></i>
+                <i class="mid"></i><i></i><i class="on"></i><i></i>
+                <i></i><i class="mid"></i><i></i><i class="on"></i>
+                <i class="on"></i><i></i><i></i><i class="mid"></i>
+                <i></i><i class="on"></i><i class="mid"></i><i></i>
+              </div>
+            </div>
+          </div>
+          <div class="panel3d p-web">
+            <div class="chrome"><span class="dotrow"><span></span><span></span><span></span></span> site · live</div>
+            <div class="body">
+              <div class="web-bar"></div>
+              <div class="web-blocks"><b></b><b></b><b></b><b></b></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="strip">
     <div class="strip-inner">
-      <div class="strip-item">
+      <div class="strip-item reveal">
         <strong>Più veloce</strong>
-        <span>quello che ti porta via ore diventa un clic</span>
+        <span>ore di lavoro ripetitivo → secondi</span>
       </div>
-      <div class="strip-item">
+      <div class="strip-item reveal">
         <strong>Su misura</strong>
-        <span>costruito sul tuo flusso di lavoro, non il contrario</span>
+        <span>il tuo flusso, non un template</span>
       </div>
-      <div class="strip-item">
-        <strong>Nessun limite</strong>
-        <span>se puoi spiegarlo, posso costruirlo</span>
+      <div class="strip-item reveal">
+        <strong>Tuo per sempre</strong>
+        <span>niente abbonamento che scade</span>
       </div>
     </div>
   </section>
 
-  <section class="section" id="problema">
-    <div class="section-inner narrow">
-      <h2>Il lavoro che ripeti ogni giorno, a mano</h2>
-      <p class="lead">Copiare dati da un PDF a un foglio Excel. Controllare a occhio centinaia di righe. Rinominare file uno per uno. Sono attività che si ripetono sempre uguali, e ogni volta ti rubano tempo che potresti usare per altro.</p>
-      <p class="lead">Un programma su misura fa quel lavoro al posto tuo, in pochi secondi invece che ore — costruito <em>esattamente</em> sul modo in cui lavori tu, non su un flusso generico pensato per andare bene a chiunque.</p>
-    </div>
-  </section>
-
-  <section class="section alt" id="esempi">
+  <section class="section" id="craft">
     <div class="section-inner">
-      <h2>Qualche esempio di cosa ho già fatto</h2>
-      <p class="lead">Sono progetti reali, già in uso. Servono solo a darti un'idea del tipo di lavoro — non sono un catalogo chiuso.</p>
+      <p class="kicker reveal">// craft</p>
+      <h2 class="reveal">Competenza che si vede.</h2>
+      <p class="lead reveal">Non vendo “pacchetti”: progetto strumenti e interfacce. Stesso rigorismo sul codice desktop e sul web — chiaro, veloce, fatto per essere usato.</p>
+      <div class="craft">
+        <article class="craft-tile reveal" data-tilt>
+          <div class="tag">Software · desktop</div>
+          <h3>Programmi che digeriscono i tuoi file</h3>
+          <p>PDF, Excel, cartellini, fatture, archivi: parsing, confronti, batch e UI semplici. Installi, usi, fine.</p>
+        </article>
+        <article class="craft-tile reveal" data-tilt>
+          <div class="tag">Web · product</div>
+          <h3>Siti e flussi digitali su misura</h3>
+          <p>Landing, prenotazioni, admin, performance: interfacce che comunicano professionalità e portano all’azione.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="problema">
+    <div class="section-inner narrow">
+      <p class="kicker reveal">// problema</p>
+      <h2 class="reveal">Il lavoro che ripeti ogni giorno, a mano</h2>
+      <p class="lead reveal">Copiare dati da un PDF a Excel. Controllare a occhio centinaia di righe. Rinominare file uno per uno. Sempre uguale — e ogni volta ti ruba tempo.</p>
+      <p class="lead reveal">Un programma costruito <em>esattamente</em> sul tuo modo di lavorare fa quel giro in pochi secondi, non ore.</p>
+    </div>
+  </section>
+
+  <section class="section" id="esempi">
+    <div class="section-inner">
+      <p class="kicker reveal">// shipped</p>
+      <h2 class="reveal">Qualche esempio di cosa ho già fatto</h2>
+      <p class="lead reveal">Progetti reali, già in uso. Idea del tipo di lavoro — non un catalogo chiuso.</p>
 
       <div class="grid">
-        <article class="card">
+        <article class="card reveal">
           <div class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M15 2v5h5"/><path d="M8 13h8M8 17h5"/></svg>
           </div>
           <h3>Editor e convertitore PDF</h3>
-          <p>Unire, dividere, comprimere sotto una dimensione target, aggiungere filigrane, modificare testo direttamente nel PDF, convertire in altri formati. Un programma desktop unico al posto di cinque abbonamenti diversi.</p>
+          <p>Unire, dividere, comprimere sotto target, filigrane, testo nel PDF, conversioni. Un desktop al posto di cinque abbonamenti.</p>
         </article>
 
-        <article class="card">
+        <article class="card reveal">
           <div class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg>
           </div>
           <h3>Compressione file mirata</h3>
-          <p>PDF troppo pesanti per un limite di invio (email, PEC, portali)? Un programma che comprime sotto la soglia che decidi tu, senza rovinare la leggibilità, senza servizi online a cui caricare documenti sensibili.</p>
+          <p>Sotto la soglia email/PEC/portale, senza rovinare la lettura e senza caricare documenti sensibili online.</p>
         </article>
 
-        <article class="card">
+        <article class="card reveal">
           <div class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8 11h6M8 8h3"/></svg>
           </div>
           <h3>Estrazione dati da PDF ed Excel</h3>
-          <p>Cartellini, cedolini, moduli, fogli di calcolo: il programma legge il documento — anche centinaia in una volta — riconosce i dati che ti servono e li tira fuori già organizzati in una tabella pronta da usare.</p>
+          <p>Cartellini, cedolini, moduli: legge a batch, riconosce i campi e li mette in tabella pronta.</p>
         </article>
 
-        <article class="card">
+        <article class="card reveal">
           <div class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11H3v10h6V11z"/><path d="M15 5H9v16h6V5z"/><path d="M21 3h-6v18h6V3z"/></svg>
           </div>
-          <h3>Conteggi automatici su grandi volumi</h3>
-          <p>Sommare, incrociare, calcolare su centinaia di righe invece che a mano una per una. Un caso reale: il calcolo dei buoni pasto a partire dai cartellini presenza di decine di lavoratori, in pochi secondi invece che ore.</p>
+          <h3>Conteggi su grandi volumi</h3>
+          <p>Buoni pasto da cartellini presenza di decine di lavoratori: secondi invece che ore.</p>
         </article>
 
-        <article class="card">
+        <article class="card reveal">
           <div class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="8" height="16" rx="1"/><rect x="13" y="4" width="8" height="16" rx="1"/><path d="M11 9l2 3-2 3"/></svg>
           </div>
-          <h3>Confronto tra documenti e differenze</h3>
-          <p>Due elenchi, due versioni dello stesso file, un ordine e la fattura corrispondente: il programma li mette a confronto riga per riga e segnala solo quello che non torna. Un caso reale: confrontare le fatture di un'azienda di trasporti con gli ordini per far emergere automaticamente le discrepanze.</p>
+          <h3>Confronto documenti</h3>
+          <p>Fatture vs ordini, due versioni dello stesso file: segnala solo ciò che non torna.</p>
         </article>
 
-        <article class="card">
+        <article class="card reveal">
           <div class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
           </div>
-          <h3>Ricerca e verifica su grandi archivi</h3>
-          <p>Controllare se un indirizzo, un codice o un nome rientra in un elenco di migliaia di voci, senza scorrerlo a mano. Un caso reale: verificare automaticamente se un indirizzo ricade nel centro storico di un comune, su un archivio di decine di migliaia di vie italiane.</p>
+          <h3>Verifica su grandi archivi</h3>
+          <p>Indirizzi, codici, nomi su decine di migliaia di voci — senza scorrere a mano.</p>
         </article>
 
-        <article class="card">
+        <article class="card reveal">
           <div class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
           </div>
-          <h3>Conversioni e riordino file in batch</h3>
-          <p>Centinaia di file da rinominare, convertire in un altro formato, zippare, smistare in cartelle secondo una regola. Quello che richiede un pomeriggio intero a mano diventa un doppio clic.</p>
+          <h3>Batch file</h3>
+          <p>Rinomina, conversione, zip, smistamento cartelle: un doppio clic al posto di un pomeriggio.</p>
         </article>
 
-        <article class="card card-open">
+        <article class="card card-open reveal">
           <div class="card-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
           </div>
           <h3>Quello che ti serve a te</h3>
-          <p>Non è in questa lista? Non è un problema. Descrivimi il flusso di lavoro che vuoi velocizzare e ti dico se, come e a quanto si può fare.</p>
+          <p>Non è in lista? Descrivimi il flusso: ti dico se, come e a quanto si può fare.</p>
         </article>
       </div>
     </div>
@@ -160,35 +227,36 @@
 
   <section class="section no-limit">
     <div class="section-inner narrow center">
-      <h2>Nessun limite. Davvero.</h2>
-      <p class="lead">Gli esempi sopra sono un punto di partenza, non un menu. Se un'azione si ripete sempre uguale in ufficio — e ti fa perdere tempo ogni volta — quasi certamente si può trasformare in un programma. Basta che tu me la spieghi passo per passo: il resto è compito mio.</p>
-      <img class="section-visual" src="assets/nolimit-illustration.png" alt="" aria-hidden="true">
+      <h2 class="reveal">Nessun limite. Davvero.</h2>
+      <p class="lead reveal">Gli esempi sono un punto di partenza. Se un’azione si ripete uguale in ufficio, quasi certamente diventa un programma. Tu spieghi i passi — il resto è compito mio.</p>
+      <img class="section-visual reveal" src="assets/nolimit-illustration.png" alt="" aria-hidden="true">
     </div>
   </section>
 
   <section class="section alt" id="come-funziona">
     <div class="section-inner narrow">
-      <h2>Come funziona</h2>
+      <p class="kicker reveal">// process</p>
+      <h2 class="reveal">Come funziona</h2>
       <ol class="steps">
-        <li>
+        <li class="reveal">
           <span class="step-num">1</span>
           <div>
             <h3>Mi racconti il problema</h3>
-            <p>Anche solo un messaggio su Instagram: cosa fai a mano oggi, quanto tempo ti porta via, che file usi.</p>
+            <p>Anche solo un messaggio su Instagram: cosa fai a mano, quanto tempo, che file usi.</p>
           </div>
         </li>
-        <li>
+        <li class="reveal">
           <span class="step-num">2</span>
           <div>
-            <h3>Ti dico tempi e costo</h3>
-            <p>Un preventivo chiaro prima di iniziare, così sai subito cosa aspettarti — nessuna sorpresa lungo il percorso.</p>
+            <h3>Tempi e costo chiari</h3>
+            <p>Preventivo prima di iniziare — nessuna sorpresa a metà strada.</p>
           </div>
         </li>
-        <li>
+        <li class="reveal">
           <span class="step-num">3</span>
           <div>
-            <h3>Ricevi il programma, è tuo</h3>
-            <p>Lo installi e lo usi da subito. Nessun abbonamento da rinnovare, nessuna licenza che scade.</p>
+            <h3>Ricevi lo strumento, è tuo</h3>
+            <p>Installi e usi. Nessun abbonamento, nessuna licenza che scade.</p>
           </div>
         </li>
       </ol>
@@ -196,7 +264,7 @@
   </section>
 
   <section class="cta-final">
-    <div class="section-inner narrow center">
+    <div class="section-inner narrow center reveal">
       <h2>Dimmi cosa ti fa perdere tempo.</h2>
       <p class="hero-sub">Un messaggio basta per iniziare.</p>
       <a href="https://www.instagram.com/autom.lab/" target="_blank" rel="noopener" class="btn btn-primary">Scrivimi su Instagram</a>
@@ -216,5 +284,90 @@
   </div>
 </footer>
 
+</div>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // 3D stage parallax
+  const stage = document.getElementById('stage');
+  if (stage && !reduce) {
+    const wrap = stage.parentElement;
+    wrap.addEventListener('pointermove', (ev) => {
+      const r = wrap.getBoundingClientRect();
+      const x = (ev.clientX - r.left) / r.width - 0.5;
+      const y = (ev.clientY - r.top) / r.height - 0.5;
+      stage.style.transform = `rotateX(${12 - y * 10}deg) rotateY(${-18 + x * 14}deg)`;
+    });
+    wrap.addEventListener('pointerleave', () => {
+      stage.style.transform = 'rotateX(12deg) rotateY(-18deg)';
+    });
+  }
+
+  // craft tiles tilt
+  if (!reduce) {
+    document.querySelectorAll('[data-tilt]').forEach((tile) => {
+      tile.addEventListener('pointermove', (ev) => {
+        const r = tile.getBoundingClientRect();
+        const x = (ev.clientX - r.left) / r.width - 0.5;
+        const y = (ev.clientY - r.top) / r.height - 0.5;
+        tile.style.transform = `rotateX(${(-y * 8).toFixed(2)}deg) rotateY(${(x * 10).toFixed(2)}deg) translateY(-2px)`;
+      });
+      tile.addEventListener('pointerleave', () => { tile.style.transform = ''; });
+    });
+  }
+
+  // canvas grid
+  const c = document.getElementById('fx');
+  if (!c || reduce) return;
+  const ctx = c.getContext('2d');
+  let w, h, t = 0, pts = [];
+  function resize() {
+    w = c.width = innerWidth * devicePixelRatio;
+    h = c.height = innerHeight * devicePixelRatio;
+    c.style.width = innerWidth + 'px';
+    c.style.height = innerHeight + 'px';
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    pts = Array.from({ length: 48 }, () => ({
+      x: Math.random() * innerWidth,
+      y: Math.random() * innerHeight,
+      v: 0.15 + Math.random() * 0.35,
+      r: 0.6 + Math.random() * 1.4
+    }));
+  }
+  function frame() {
+    t += 0.004;
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    ctx.strokeStyle = 'rgba(198,240,0,0.045)';
+    ctx.lineWidth = 1;
+    const step = 56;
+    const ox = (t * 12) % step;
+    for (let x = -step + ox; x < innerWidth + step; x += step) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, innerHeight); ctx.stroke();
+    }
+    for (let y = -step + ox * 0.6; y < innerHeight + step; y += step) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(innerWidth, y); ctx.stroke();
+    }
+    pts.forEach((p) => {
+      p.y -= p.v;
+      if (p.y < -4) { p.y = innerHeight + 4; p.x = Math.random() * innerWidth; }
+      ctx.fillStyle = 'rgba(198,240,0,0.35)';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    requestAnimationFrame(frame);
+  }
+  addEventListener('resize', resize);
+  resize();
+  frame();
+})();
+</script>
 </body>
 </html>
