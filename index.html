@@ -37,6 +37,8 @@
 </head>
 <body>
 <canvas id="fx" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-glow" id="glow" aria-hidden="true"></div>
 <div class="page">
 
 <header class="nav">
@@ -63,7 +65,7 @@
         <h1>Software e siti che risolvono lavoro vero.</h1>
         <p class="hero-sub">Automazione desktop, strumenti su misura e web craft: costruisco ciò che ti toglie ore — sul tuo flusso, non su un SaaS generico.</p>
         <div class="hero-cta">
-          <a href="https://www.instagram.com/autom.lab/" target="_blank" rel="noopener" class="btn btn-primary">Raccontami il problema</a>
+          <a href="https://www.instagram.com/autom.lab/" target="_blank" rel="noopener" class="btn btn-primary" data-magnetic>Raccontami il problema</a>
           <a href="#esempi" class="btn btn-ghost">Vedi esempi reali</a>
         </div>
       </div>
@@ -121,6 +123,13 @@
       </div>
     </div>
   </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Python</span><span>Desktop apps</span><span>PDF pipelines</span><span>Excel automation</span><span>Web craft</span><span>UI/UX</span><span>Batch tools</span><span>Custom scripts</span>
+      <span>Python</span><span>Desktop apps</span><span>PDF pipelines</span><span>Excel automation</span><span>Web craft</span><span>UI/UX</span><span>Batch tools</span><span>Custom scripts</span>
+    </div>
+  </div>
 
   <section class="section" id="craft">
     <div class="section-inner">
@@ -267,7 +276,7 @@
     <div class="section-inner narrow center reveal">
       <h2>Dimmi cosa ti fa perdere tempo.</h2>
       <p class="hero-sub">Un messaggio basta per iniziare.</p>
-      <a href="https://www.instagram.com/autom.lab/" target="_blank" rel="noopener" class="btn btn-primary">Scrivimi su Instagram</a>
+      <a href="https://www.instagram.com/autom.lab/" target="_blank" rel="noopener" class="btn btn-primary" data-magnetic>Scrivimi su Instagram</a>
     </div>
   </section>
 
@@ -288,29 +297,46 @@
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let scrollY = 0, mx = 0.5, my = 0.5, glowX = innerWidth / 2, glowY = innerHeight / 2;
 
-  // scroll reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-  // 3D stage parallax
+  const glow = document.getElementById('glow');
   const stage = document.getElementById('stage');
+  let stagePtr = { x: 0, y: 0 };
+
+  addEventListener('scroll', () => { scrollY = pageYOffset; }, { passive: true });
+  addEventListener('pointermove', (ev) => {
+    mx = ev.clientX / innerWidth;
+    my = ev.clientY / innerHeight;
+    glowX += (ev.clientX - glowX) * 0.18;
+    glowY += (ev.clientY - glowY) * 0.18;
+    if (glow) {
+      glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
+      glow.classList.add('on');
+    }
+  }, { passive: true });
+
   if (stage && !reduce) {
     const wrap = stage.parentElement;
     wrap.addEventListener('pointermove', (ev) => {
       const r = wrap.getBoundingClientRect();
-      const x = (ev.clientX - r.left) / r.width - 0.5;
-      const y = (ev.clientY - r.top) / r.height - 0.5;
-      stage.style.transform = `rotateX(${12 - y * 10}deg) rotateY(${-18 + x * 14}deg)`;
+      stagePtr.x = (ev.clientX - r.left) / r.width - 0.5;
+      stagePtr.y = (ev.clientY - r.top) / r.height - 0.5;
     });
-    wrap.addEventListener('pointerleave', () => {
-      stage.style.transform = 'rotateX(12deg) rotateY(-18deg)';
-    });
+    wrap.addEventListener('pointerleave', () => { stagePtr.x = 0; stagePtr.y = 0; });
+    (function tickStage() {
+      const sc = Math.min(scrollY / 500, 1);
+      const rx = 12 - stagePtr.y * 10 + sc * 8;
+      const ry = -18 + stagePtr.x * 14 - sc * 6;
+      stage.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${sc * -40}px)`;
+      requestAnimationFrame(tickStage);
+    })();
   }
 
-  // craft tiles tilt
   if (!reduce) {
     document.querySelectorAll('[data-tilt]').forEach((tile) => {
       tile.addEventListener('pointermove', (ev) => {
@@ -321,49 +347,101 @@
       });
       tile.addEventListener('pointerleave', () => { tile.style.transform = ''; });
     });
+
+    document.querySelectorAll('[data-magnetic]').forEach((btn) => {
+      btn.addEventListener('pointermove', (ev) => {
+        const r = btn.getBoundingClientRect();
+        const x = ev.clientX - (r.left + r.width / 2);
+        const y = ev.clientY - (r.top + r.height / 2);
+        btn.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+      });
+      btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+    });
   }
 
-  // canvas grid
+  // scroll-terrain mesh (GetLayers-inspired cinematic depth)
   const c = document.getElementById('fx');
   if (!c || reduce) return;
   const ctx = c.getContext('2d');
-  let w, h, t = 0, pts = [];
+  let t = 0;
+  const cols = 28, rows = 18;
+
   function resize() {
-    w = c.width = innerWidth * devicePixelRatio;
-    h = c.height = innerHeight * devicePixelRatio;
+    c.width = innerWidth * devicePixelRatio;
+    c.height = innerHeight * devicePixelRatio;
     c.style.width = innerWidth + 'px';
     c.style.height = innerHeight + 'px';
     ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-    pts = Array.from({ length: 48 }, () => ({
-      x: Math.random() * innerWidth,
-      y: Math.random() * innerHeight,
-      v: 0.15 + Math.random() * 0.35,
-      r: 0.6 + Math.random() * 1.4
-    }));
   }
+
+  function heightAt(i, j, time) {
+    const u = i / cols, v = j / rows;
+    return Math.sin(u * 5.2 + time) * 18
+      + Math.cos(v * 4.1 - time * 0.7) * 14
+      + Math.sin((u + v) * 3.5 + time * 0.4) * 10
+      + (mx - 0.5) * 12 * (1 - v)
+      + scrollY * 0.02 * (1 - v);
+  }
+
+  function project(i, j, z) {
+    const u = i / (cols - 1) - 0.5;
+    const v = j / (rows - 1);
+    const persp = 1.15 + v * 0.55;
+    const x = innerWidth * 0.5 + u * innerWidth * 0.92 * persp;
+    const y = innerHeight * 0.28 + v * innerHeight * 0.78 - z * (0.55 + v * 0.2) + my * 20;
+    return [x, y];
+  }
+
   function frame() {
-    t += 0.004;
+    t += 0.012;
     ctx.clearRect(0, 0, innerWidth, innerHeight);
-    ctx.strokeStyle = 'rgba(198,240,0,0.045)';
+
+    // soft vignette wash
+    const g = ctx.createRadialGradient(innerWidth * mx, innerHeight * my, 40, innerWidth * 0.5, innerHeight * 0.45, innerWidth * 0.7);
+    g.addColorStop(0, 'rgba(198,240,0,0.05)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, innerWidth, innerHeight);
+
+    const pts = [];
+    for (let j = 0; j < rows; j++) {
+      pts[j] = [];
+      for (let i = 0; i < cols; i++) pts[j][i] = project(i, j, heightAt(i, j, t));
+    }
+
     ctx.lineWidth = 1;
-    const step = 56;
-    const ox = (t * 12) % step;
-    for (let x = -step + ox; x < innerWidth + step; x += step) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, innerHeight); ctx.stroke();
+    for (let j = 0; j < rows - 1; j++) {
+      const a = 0.04 + (1 - j / rows) * 0.14;
+      ctx.strokeStyle = `rgba(198,240,0,${a})`;
+      for (let i = 0; i < cols - 1; i++) {
+        const a0 = pts[j][i], a1 = pts[j][i + 1], a2 = pts[j + 1][i];
+        ctx.beginPath();
+        ctx.moveTo(a0[0], a0[1]);
+        ctx.lineTo(a1[0], a1[1]);
+        ctx.moveTo(a0[0], a0[1]);
+        ctx.lineTo(a2[0], a2[1]);
+        ctx.stroke();
+      }
     }
-    for (let y = -step + ox * 0.6; y < innerHeight + step; y += step) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(innerWidth, y); ctx.stroke();
-    }
-    pts.forEach((p) => {
-      p.y -= p.v;
-      if (p.y < -4) { p.y = innerHeight + 4; p.x = Math.random() * innerWidth; }
-      ctx.fillStyle = 'rgba(198,240,0,0.35)';
+
+    // horizon nodes
+    for (let i = 0; i < cols; i += 2) {
+      const p = pts[Math.floor(rows * 0.35)][i];
+      ctx.fillStyle = 'rgba(198,240,0,0.45)';
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.arc(p[0], p[1], 1.4, 0, Math.PI * 2);
       ctx.fill();
-    });
+    }
+
+    if (glow) {
+      glowX += (mx * innerWidth - glowX) * 0.08;
+      glowY += (my * innerHeight - glowY) * 0.08;
+      glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
+    }
+
     requestAnimationFrame(frame);
   }
+
   addEventListener('resize', resize);
   resize();
   frame();
