@@ -304,10 +304,12 @@ code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
 .offer-note { margin-top: 1.2rem; max-width: 40rem; }
 .pc-visual {
   display: block;
-  width: 100%;
-  max-width: 640px;
-  margin: 2rem auto 0;
-  border-radius: 16px;
+  width: min(100%, 480px);
+  height: auto;
+  aspect-ratio: 942 / 526;
+  object-fit: contain;
+  margin: 1.75rem auto 0;
+  border-radius: 14px;
   border: 1px solid var(--line);
 }
 
@@ -469,9 +471,10 @@ code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
   .hero-grid { grid-template-columns: 1fr; }
   .stage-wrap { order: -1; min-height: 340px; }
   .stage { height: 320px; transform: rotateX(10deg) rotateY(-12deg) scale(0.92); }
-  .gallery-wrap { height: min(460px, 68vh); }
+  .gallery-wrap { height: min(420px, 62vh); }
   .strip-inner { grid-template-columns: 1fr; }
   .hero h1 { max-width: none; }
+  .pc-visual { width: min(100%, 320px); }
 }
 @media (max-width: 640px) {
   .hero { padding: 4rem 1.2rem 3rem; min-height: auto; }
