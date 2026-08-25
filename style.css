@@ -302,6 +302,14 @@ code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
   letter-spacing: 0.06em;
 }
 .offer-note { margin-top: 1.2rem; max-width: 40rem; }
+.pc-visual {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  margin: 2rem auto 0;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
 
 .reveal {
   opacity: 0;
