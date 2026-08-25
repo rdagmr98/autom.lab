@@ -499,3 +499,21 @@ code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
   .grain, .cursor-glow { display: none; }
   .marquee-track { animation: none; }
 }
+
+.legal h2 {
+  font-size: 1.25rem;
+  margin: 2rem 0 0.6rem;
+}
+.legal p, .legal li { margin-bottom: 0.75rem; }
+.legal-list {
+  padding-left: 1.2rem;
+  color: var(--dim);
+}
+.legal a { color: var(--volt); text-decoration: underline; text-underline-offset: 2px; }
+.legal code {
+  font-size: 0.85em;
+  color: var(--ink);
+  background: var(--panel);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
