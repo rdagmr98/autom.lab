@@ -292,8 +292,6 @@ code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
   position: relative;
   height: 300px;
   perspective: 900px;
-  transform-style: preserve-3d;
-  overflow: visible;
   touch-action: pan-y;
 }
 .cover-card {
