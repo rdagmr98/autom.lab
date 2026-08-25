@@ -297,41 +297,6 @@ code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
   margin-bottom: 0.85rem;
 }
 
-.craft {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin-top: 2.2rem;
-}
-.craft-tile {
-  position: relative;
-  padding: 1.7rem;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  transform-style: preserve-3d;
-  transition: transform 0.35s var(--ease), border-color 0.25s ease;
-  min-height: 200px;
-  overflow: hidden;
-}
-.craft-tile:hover { border-color: rgba(198, 240, 0, 0.35); }
-.craft-tile::after {
-  content: "";
-  position: absolute; inset: auto -20% -40% auto;
-  width: 180px; height: 180px;
-  background: radial-gradient(circle, rgba(198, 240, 0, 0.16), transparent 70%);
-  pointer-events: none;
-}
-.craft-tile .tag {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.68rem;
-  color: var(--copper);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.7rem;
-}
-.craft-tile p { font-size: 0.95rem; max-width: 36ch; }
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
