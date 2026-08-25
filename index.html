@@ -27,12 +27,17 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"autom.lab","description":"Automazione aziendale, software desktop e siti web su misura.","url":"https://rdagmr98.github.io/autom.lab/","image":"https://rdagmr98.github.io/autom.lab/assets/logo-mark.png","sameAs":["https://www.instagram.com/autom.lab/"],"areaServed":"IT","knowsAbout":["automazione aziendale","software su misura","siti web","script automazione"]}
 </script>
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="alternate icon" href="assets/hacker-silhouette.png" type="image/png">
+<link rel="icon" href="/autom.lab/favicon.ico" sizes="any">
+<link rel="icon" href="/autom.lab/favicon.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/autom.lab/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/autom.lab/apple-touch-icon.png" sizes="180x180">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js"}}
+</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2556899149200560" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -48,7 +53,7 @@
       autom<span class="dot">.</span>lab
     </a>
     <ul class="nav-links">
-      <li><a href="#craft">Competenze</a></li>
+      <li><a href="#craft">Cosa costruisco</a></li>
       <li><a href="#esempi">Esempi</a></li>
       <li><a href="#come-funziona">Come funziona</a></li>
     </ul>
@@ -71,38 +76,7 @@
       </div>
 
       <div class="stage-wrap reveal" aria-hidden="true">
-        <div class="stage" id="stage">
-          <div class="panel3d p-code">
-            <div class="chrome"><span class="dotrow"><span></span><span></span><span></span></span> extract.py</div>
-            <div class="body mono">
-              <div><span class="cmt"># da PDF → tabella pronta</span></div>
-              <div><span class="kw">for</span> doc <span class="kw">in</span> batch:</div>
-              <div>&nbsp;&nbsp;rows = parse(<span class="str">doc</span>)</div>
-              <div>&nbsp;&nbsp;export.xlsx(rows)</div>
-              <div><span class="kw">print</span>(<span class="str">"done in 4s"</span>)</div>
-            </div>
-          </div>
-          <div class="panel3d p-sheet">
-            <div class="chrome"><span class="dotrow"><span></span><span></span><span></span></span> payroll.xlsx</div>
-            <div class="body">
-              <div class="sheet-grid">
-                <i class="on"></i><i></i><i class="mid"></i><i></i>
-                <i></i><i class="on"></i><i></i><i class="mid"></i>
-                <i class="mid"></i><i></i><i class="on"></i><i></i>
-                <i></i><i class="mid"></i><i></i><i class="on"></i>
-                <i class="on"></i><i></i><i></i><i class="mid"></i>
-                <i></i><i class="on"></i><i class="mid"></i><i></i>
-              </div>
-            </div>
-          </div>
-          <div class="panel3d p-web">
-            <div class="chrome"><span class="dotrow"><span></span><span></span><span></span></span> site · live</div>
-            <div class="body">
-              <div class="web-bar"></div>
-              <div class="web-blocks"><b></b><b></b><b></b><b></b></div>
-            </div>
-          </div>
-        </div>
+        <canvas id="hero3d"></canvas>
       </div>
     </div>
   </section>
@@ -126,34 +100,47 @@
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Python</span><span>Desktop apps</span><span>PDF pipelines</span><span>Excel automation</span><span>Web craft</span><span>UI/UX</span><span>Batch tools</span><span>Custom scripts</span>
-      <span>Python</span><span>Desktop apps</span><span>PDF pipelines</span><span>Excel automation</span><span>Web craft</span><span>UI/UX</span><span>Batch tools</span><span>Custom scripts</span>
+      <span>Gestionali</span><span>Siti web</span><span>E-commerce</span><span>Software desktop</span><span>Dashboard</span><span>Prenotazioni</span><span>Automazioni</span><span>Portali clienti</span><span>CRM</span><span>MVP</span>
+      <span>Gestionali</span><span>Siti web</span><span>E-commerce</span><span>Software desktop</span><span>Dashboard</span><span>Prenotazioni</span><span>Automazioni</span><span>Portali clienti</span><span>CRM</span><span>MVP</span>
     </div>
   </div>
 
   <section class="section" id="craft">
     <div class="section-inner">
-      <p class="kicker reveal">// craft</p>
-      <h2 class="reveal">Competenza che si vede.</h2>
-      <p class="lead reveal">Non vendo “pacchetti”: progetto strumenti e interfacce. Stesso rigorismo sul codice desktop e sul web — chiaro, veloce, fatto per essere usato.</p>
-      <div class="craft">
-        <article class="craft-tile reveal" data-tilt>
-          <div class="tag">Software · desktop</div>
-          <h3>Programmi che digeriscono i tuoi file</h3>
-          <p>PDF, Excel, cartellini, fatture, archivi: parsing, confronti, batch e UI semplici. Installi, usi, fine.</p>
-        </article>
-        <article class="craft-tile reveal" data-tilt>
-          <div class="tag">Web · product</div>
-          <h3>Siti e flussi digitali su misura</h3>
-          <p>Landing, prenotazioni, admin, performance: interfacce che comunicano professionalità e portano all’azione.</p>
-        </article>
-      </div>
+      <h2 class="reveal">Cosa posso costruire per te</h2>
+      <p class="lead reveal">Non solo automazioni. Software, siti e sistemi interi — su misura sul tuo lavoro. Se te lo immagini, quasi certamente si può fare.</p>
+      <ul class="offer-grid reveal">
+        <li>Gestionali e CRM</li>
+        <li>Siti web e landing page</li>
+        <li>E-commerce e cataloghi</li>
+        <li>Software desktop (Windows)</li>
+        <li>Dashboard e reportistica</li>
+        <li>Portali clienti / area riservata</li>
+        <li>Sistemi di prenotazione</li>
+        <li>App web e pannelli admin</li>
+        <li>Automazioni PDF / Excel / batch</li>
+        <li>Confronto e validazione documenti</li>
+        <li>Estrazione dati e archivi digitali</li>
+        <li>Integrazioni API e sync</li>
+        <li>Configuratori e wizard</li>
+        <li>Tool interni aziendali</li>
+        <li>Inventari e magazzino</li>
+        <li>Fatture, ordini, bolle</li>
+        <li>Form e workflow approvazioni</li>
+        <li>Calendari e agenda studio</li>
+        <li>Generazione documenti / contratti</li>
+        <li>Import/export massivi</li>
+        <li>Monitoraggi e alert</li>
+        <li>Prototipi e MVP veloci</li>
+        <li>Restyling UX di strumenti esistenti</li>
+        <li>Qualsiasi flusso che ripeti a mano</li>
+      </ul>
+      <p class="lead offer-note reveal">Non è un listino chiuso: descrivi il problema (anche solo a parole) e ti dico se, come e in quanto tempo.</p>
     </div>
   </section>
 
   <section class="section alt" id="problema">
     <div class="section-inner narrow">
-      <p class="kicker reveal">// problema</p>
       <h2 class="reveal">Il lavoro che ripeti ogni giorno, a mano</h2>
       <p class="lead reveal">Copiare dati da un PDF a Excel. Controllare a occhio centinaia di righe. Rinominare file uno per uno. Sempre uguale — e ogni volta ti ruba tempo.</p>
       <p class="lead reveal">Un programma costruito <em>esattamente</em> sul tuo modo di lavorare fa quel giro in pochi secondi, non ore.</p>
@@ -162,7 +149,6 @@
 
   <section class="section" id="esempi">
     <div class="section-inner">
-      <p class="kicker reveal">// shipped</p>
       <h2 class="reveal">Qualche esempio di cosa ho già fatto</h2>
       <p class="lead reveal">Progetti reali, già in uso. Idea del tipo di lavoro — non un catalogo chiuso.</p>
 
@@ -244,7 +230,6 @@
 
   <section class="section alt" id="come-funziona">
     <div class="section-inner narrow">
-      <p class="kicker reveal">// process</p>
       <h2 class="reveal">Come funziona</h2>
       <ol class="steps">
         <li class="reveal">
@@ -305,49 +290,17 @@
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
   const glow = document.getElementById('glow');
-  const stage = document.getElementById('stage');
-  let stagePtr = { x: 0, y: 0 };
-
   addEventListener('scroll', () => { scrollY = pageYOffset; }, { passive: true });
   addEventListener('pointermove', (ev) => {
     mx = ev.clientX / innerWidth;
     my = ev.clientY / innerHeight;
-    glowX += (ev.clientX - glowX) * 0.18;
-    glowY += (ev.clientY - glowY) * 0.18;
     if (glow) {
-      glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
+      glow.style.transform = `translate(${ev.clientX}px, ${ev.clientY}px) translate(-50%, -50%)`;
       glow.classList.add('on');
     }
   }, { passive: true });
 
-  if (stage && !reduce) {
-    const wrap = stage.parentElement;
-    wrap.addEventListener('pointermove', (ev) => {
-      const r = wrap.getBoundingClientRect();
-      stagePtr.x = (ev.clientX - r.left) / r.width - 0.5;
-      stagePtr.y = (ev.clientY - r.top) / r.height - 0.5;
-    });
-    wrap.addEventListener('pointerleave', () => { stagePtr.x = 0; stagePtr.y = 0; });
-    (function tickStage() {
-      const sc = Math.min(scrollY / 500, 1);
-      const rx = 12 - stagePtr.y * 10 + sc * 8;
-      const ry = -18 + stagePtr.x * 14 - sc * 6;
-      stage.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${sc * -40}px)`;
-      requestAnimationFrame(tickStage);
-    })();
-  }
-
   if (!reduce) {
-    document.querySelectorAll('[data-tilt]').forEach((tile) => {
-      tile.addEventListener('pointermove', (ev) => {
-        const r = tile.getBoundingClientRect();
-        const x = (ev.clientX - r.left) / r.width - 0.5;
-        const y = (ev.clientY - r.top) / r.height - 0.5;
-        tile.style.transform = `rotateX(${(-y * 8).toFixed(2)}deg) rotateY(${(x * 10).toFixed(2)}deg) translateY(-2px)`;
-      });
-      tile.addEventListener('pointerleave', () => { tile.style.transform = ''; });
-    });
-
     document.querySelectorAll('[data-magnetic]').forEach((btn) => {
       btn.addEventListener('pointermove', (ev) => {
         const r = btn.getBoundingClientRect();
@@ -359,7 +312,6 @@
     });
   }
 
-  // scroll-terrain mesh (GetLayers-inspired cinematic depth)
   const c = document.getElementById('fx');
   if (!c || reduce) return;
   const ctx = c.getContext('2d');
@@ -395,8 +347,6 @@
   function frame() {
     t += 0.012;
     ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-    // soft vignette wash
     const g = ctx.createRadialGradient(innerWidth * mx, innerHeight * my, 40, innerWidth * 0.5, innerHeight * 0.45, innerWidth * 0.7);
     g.addColorStop(0, 'rgba(198,240,0,0.05)');
     g.addColorStop(1, 'rgba(0,0,0,0)');
@@ -408,11 +358,9 @@
       pts[j] = [];
       for (let i = 0; i < cols; i++) pts[j][i] = project(i, j, heightAt(i, j, t));
     }
-
     ctx.lineWidth = 1;
     for (let j = 0; j < rows - 1; j++) {
-      const a = 0.04 + (1 - j / rows) * 0.14;
-      ctx.strokeStyle = `rgba(198,240,0,${a})`;
+      ctx.strokeStyle = `rgba(198,240,0,${0.04 + (1 - j / rows) * 0.14})`;
       for (let i = 0; i < cols - 1; i++) {
         const a0 = pts[j][i], a1 = pts[j][i + 1], a2 = pts[j + 1][i];
         ctx.beginPath();
@@ -423,8 +371,6 @@
         ctx.stroke();
       }
     }
-
-    // horizon nodes
     for (let i = 0; i < cols; i += 2) {
       const p = pts[Math.floor(rows * 0.35)][i];
       ctx.fillStyle = 'rgba(198,240,0,0.45)';
@@ -432,20 +378,13 @@
       ctx.arc(p[0], p[1], 1.4, 0, Math.PI * 2);
       ctx.fill();
     }
-
-    if (glow) {
-      glowX += (mx * innerWidth - glowX) * 0.08;
-      glowY += (my * innerHeight - glowY) * 0.08;
-      glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
-    }
-
     requestAnimationFrame(frame);
   }
-
   addEventListener('resize', resize);
   resize();
   frame();
 })();
 </script>
+<script type="module" src="js/scene3d.js"></script>
 </body>
 </html>
