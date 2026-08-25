@@ -62,9 +62,12 @@ function wrapText(ctx, text, x, y, maxW, lineH) {
 }
 
 const canvas = document.getElementById('gallery3d');
-if (!canvas || matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  if (canvas) canvas.closest('.gallery-wrap')?.classList.add('fallback');
+if (!canvas) {
+  /* no-op */
+} else if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  canvas.closest('.gallery-wrap')?.classList.add('fallback');
 } else {
+  try {
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(0x0b0d0a, 0.022);
 
@@ -262,4 +265,8 @@ if (!canvas || matchMedia('(prefers-reduced-motion: reduce)').matches) {
     requestAnimationFrame(animate);
   }
   animate();
+  } catch (err) {
+    console.error('gallery3d', err);
+    canvas.closest('.gallery-wrap')?.classList.add('fallback');
+  }
 }

@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20260825b">
 <script type="importmap">
 {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js"}}
 </script>
@@ -140,7 +140,7 @@
     <div class="section-inner">
       <h2 class="reveal">Cosa posso costruire per te</h2>
       <p class="lead reveal">Gestionali, siti, software desktop, portali, automazioni — trascina la galleria. Non è un listino chiuso.</p>
-      <div class="gallery-wrap reveal">
+      <div class="gallery-wrap">
         <canvas id="gallery3d"></canvas>
         <p class="gallery-hint">Trascina per girare · scorre da sola</p>
       </div>
@@ -153,7 +153,7 @@
       <h2 class="reveal">Il lavoro che ripeti ogni giorno, a mano</h2>
       <p class="lead reveal">Copiare dati da un PDF a Excel. Controllare a occhio centinaia di righe. Rinominare file uno per uno. Sempre uguale — e ogni volta ti ruba tempo.</p>
       <p class="lead reveal">Un programma costruito <em>esattamente</em> sul tuo modo di lavorare fa quel giro in pochi secondi, non ore.</p>
-      <img class="pc-visual reveal" src="assets/hero-illustration.png" width="942" height="526" alt="Laptop con automazioni PDF, Excel e dashboard — software su misura autom.lab" loading="lazy">
+      <img class="pc-visual" src="assets/hero-illustration.png" width="942" height="526" alt="Laptop con automazioni PDF, Excel e dashboard — software su misura autom.lab" loading="lazy">
     </div>
   </section>
 
@@ -296,7 +296,12 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  document.querySelectorAll('.reveal').forEach((el) => {
+    io.observe(el);
+    // already on screen at load → show immediately (avoids invisible gallery/content)
+    const r = el.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) el.classList.add('in');
+  });
 
   const glow = document.getElementById('glow');
   const stage = document.getElementById('stage');
@@ -367,6 +372,6 @@
   frame();
 })();
 </script>
-<script type="module" src="js/scene3d.js"></script>
+<script type="module" src="js/scene3d.js?v=20260825b"></script>
 </body>
 </html>

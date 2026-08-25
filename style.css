@@ -290,7 +290,17 @@ code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
   cursor: grab;
   touch-action: none;
 }
-.gallery-wrap:active { cursor: grabbing; }
+.gallery-wrap.fallback::after {
+  content: "Apri su un browser aggiornato per la galleria 3D";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--dim);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
 #gallery3d { width: 100%; height: 100%; display: block; }
 .gallery-hint {
   position: absolute; left: 0; right: 0; bottom: 0.9rem;
