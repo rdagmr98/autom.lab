@@ -35,6 +35,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Sora:wght@400;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js"}}
+</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2556899149200560" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -72,7 +75,7 @@
         </div>
       </div>
 
-      <div class="stage-wrap" aria-hidden="true">
+      <div class="stage-wrap reveal" aria-hidden="true">
         <div class="stage" id="stage">
           <div class="panel3d p-code">
             <div class="chrome"><span class="dotrow"><span></span><span></span><span></span></span> extract.py</div>
@@ -136,28 +139,10 @@
   <section class="section" id="craft">
     <div class="section-inner">
       <h2 class="reveal">Cosa posso costruire per te</h2>
-      <p class="lead reveal">Scorri o trascina le carte. Non è un listino chiuso — se lo ripeti a mano, si può fare.</p>
-      <div class="coverflow reveal" id="coverflow" aria-label="Galleria servizi">
-        <button type="button" class="cover-nav prev" id="coverPrev" aria-label="Precedente">‹</button>
-        <div class="coverflow-stage">
-          <article class="cover-card"><span class="cover-tag">01</span><h3>Gestionali e CRM</h3><p>Clienti, pratiche, flussi operativi</p></article>
-          <article class="cover-card"><span class="cover-tag">02</span><h3>Siti web e landing</h3><p>Presenza online su misura</p></article>
-          <article class="cover-card"><span class="cover-tag">03</span><h3>E-commerce e cataloghi</h3><p>Vendite e vetrine digitali</p></article>
-          <article class="cover-card"><span class="cover-tag">04</span><h3>Software desktop</h3><p>Programmi Windows installabili</p></article>
-          <article class="cover-card"><span class="cover-tag">05</span><h3>Dashboard e report</h3><p>Dati chiari, decisioni rapide</p></article>
-          <article class="cover-card"><span class="cover-tag">06</span><h3>Portali clienti</h3><p>Area riservata e self-service</p></article>
-          <article class="cover-card"><span class="cover-tag">07</span><h3>Sistemi di prenotazione</h3><p>Agenda, slot, conferme</p></article>
-          <article class="cover-card"><span class="cover-tag">08</span><h3>App web e admin</h3><p>Pannelli di gestione</p></article>
-          <article class="cover-card"><span class="cover-tag">09</span><h3>Automazioni PDF / Excel</h3><p>Batch, estrazioni, confronti</p></article>
-          <article class="cover-card"><span class="cover-tag">10</span><h3>Integrazioni API</h3><p>Sync tra sistemi e servizi</p></article>
-          <article class="cover-card"><span class="cover-tag">11</span><h3>Tool interni aziendali</h3><p>Operatività quotidiana</p></article>
-          <article class="cover-card"><span class="cover-tag">12</span><h3>MVP e prototipi</h3><p>Dal problema al primo rilascio</p></article>
-          <article class="cover-card"><span class="cover-tag">13</span><h3>Inventari e magazzino</h3><p>Giacenze e movimenti</p></article>
-          <article class="cover-card"><span class="cover-tag">14</span><h3>Documenti e contratti</h3><p>Generazione e archivi digitali</p></article>
-          <article class="cover-card"><span class="cover-tag">15</span><h3>Il tuo flusso su misura</h3><p>Qualsiasi task che ripeti a mano</p></article>
-        </div>
-        <button type="button" class="cover-nav next" id="coverNext" aria-label="Successivo">›</button>
-        <div class="cover-dots" id="coverDots" aria-hidden="true"></div>
+      <p class="lead reveal">Gestionali, siti, software desktop, portali, automazioni — trascina la galleria. Non è un listino chiuso.</p>
+      <div class="gallery-wrap reveal">
+        <canvas id="gallery3d"></canvas>
+        <p class="gallery-hint">Trascina per girare · scorre da sola</p>
       </div>
       <p class="lead offer-note reveal">Descrivi il problema (anche solo a parole) e ti dico se, come e in quanto tempo.</p>
     </div>
@@ -310,11 +295,12 @@
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
   const glow = document.getElementById('glow');
   const stage = document.getElementById('stage');
+  let stagePtr = { x: 0, y: 0 };
 
   addEventListener('pointermove', (ev) => {
     if (glow) {
@@ -327,9 +313,9 @@
     const wrap = stage.parentElement;
     wrap.addEventListener('pointermove', (ev) => {
       const r = wrap.getBoundingClientRect();
-      const x = (ev.clientX - r.left) / r.width - 0.5;
-      const y = (ev.clientY - r.top) / r.height - 0.5;
-      stage.style.transform = `rotateX(${12 - y * 10}deg) rotateY(${-18 + x * 14}deg)`;
+      stagePtr.x = (ev.clientX - r.left) / r.width - 0.5;
+      stagePtr.y = (ev.clientY - r.top) / r.height - 0.5;
+      stage.style.transform = `rotateX(${12 - stagePtr.y * 10}deg) rotateY(${-18 + stagePtr.x * 14}deg)`;
     });
     wrap.addEventListener('pointerleave', () => {
       stage.style.transform = 'rotateX(12deg) rotateY(-18deg)';
@@ -346,104 +332,41 @@
     });
   }
 
-  // 3D coverflow with real HTML text (works on mobile)
-  const cards = [...document.querySelectorAll('.cover-card')];
-  const dotsWrap = document.getElementById('coverDots');
-  let idx = 0;
-  let timer;
-  if (cards.length && dotsWrap) {
-    cards.forEach((_, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.setAttribute('aria-label', `Carta ${i + 1}`);
-      b.addEventListener('click', () => go(i));
-      dotsWrap.appendChild(b);
-    });
-    const dots = [...dotsWrap.querySelectorAll('button')];
-
-    function layout() {
-      const n = cards.length;
-      cards.forEach((card, i) => {
-        let d = i - idx;
-        if (d > n / 2) d -= n;
-        if (d < -n / 2) d += n;
-        const abs = Math.abs(d);
-        const x = d * (window.innerWidth < 640 ? 52 : 70);
-        const z = -Math.abs(d) * 70;
-        const rot = d * -28;
-        const scale = abs === 0 ? 1 : Math.max(0.72, 1 - abs * 0.1);
-        card.style.opacity = abs > 3 ? '0' : String(Math.max(0.25, 1 - abs * 0.22));
-        card.style.filter = abs === 0 ? 'none' : 'brightness(0.75)';
-        card.style.zIndex = String(20 - abs);
-        card.style.transform = `translateX(${x}%) translateZ(${z}px) rotateY(${rot}deg) scale(${scale})`;
-        card.classList.toggle('is-active', d === 0);
-      });
-      dots.forEach((d, i) => d.classList.toggle('on', i === idx));
-    }
-
-    function go(i) {
-      idx = (i + cards.length) % cards.length;
-      layout();
-      restart();
-    }
-
-    function restart() {
-      clearInterval(timer);
-      if (!reduce) timer = setInterval(() => go(idx + 1), 3200);
-    }
-
-    document.getElementById('coverPrev')?.addEventListener('click', () => go(idx - 1));
-    document.getElementById('coverNext')?.addEventListener('click', () => go(idx + 1));
-
-    let sx = 0, dragging = false;
-    const stageEl = document.querySelector('.coverflow-stage');
-    stageEl?.addEventListener('pointerdown', (e) => { dragging = true; sx = e.clientX; stageEl.setPointerCapture(e.pointerId); });
-    stageEl?.addEventListener('pointerup', (e) => {
-      if (!dragging) return;
-      dragging = false;
-      const dx = e.clientX - sx;
-      if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
-    });
-
-    layout();
-    restart();
-    addEventListener('resize', layout);
-  }
-
+  // soft floating dots only — no reticolo
   const c = document.getElementById('fx');
-  if (c && !reduce) {
-    const ctx = c.getContext('2d');
-    let pts = [];
-    function resize() {
-      c.width = innerWidth * devicePixelRatio;
-      c.height = innerHeight * devicePixelRatio;
-      c.style.width = innerWidth + 'px';
-      c.style.height = innerHeight + 'px';
-      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-      pts = Array.from({ length: 36 }, () => ({
-        x: Math.random() * innerWidth,
-        y: Math.random() * innerHeight,
-        v: 0.12 + Math.random() * 0.28,
-        r: 0.5 + Math.random() * 1.2
-      }));
-    }
-    function frame() {
-      ctx.clearRect(0, 0, innerWidth, innerHeight);
-      pts.forEach((p) => {
-        p.y -= p.v;
-        if (p.y < -4) { p.y = innerHeight + 4; p.x = Math.random() * innerWidth; }
-        ctx.fillStyle = 'rgba(198,240,0,0.22)';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      requestAnimationFrame(frame);
-    }
-    addEventListener('resize', resize);
-    resize();
-    frame();
+  if (!c || reduce) return;
+  const ctx = c.getContext('2d');
+  let pts = [];
+  function resize() {
+    c.width = innerWidth * devicePixelRatio;
+    c.height = innerHeight * devicePixelRatio;
+    c.style.width = innerWidth + 'px';
+    c.style.height = innerHeight + 'px';
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    pts = Array.from({ length: 36 }, () => ({
+      x: Math.random() * innerWidth,
+      y: Math.random() * innerHeight,
+      v: 0.12 + Math.random() * 0.28,
+      r: 0.5 + Math.random() * 1.2
+    }));
   }
+  function frame() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    pts.forEach((p) => {
+      p.y -= p.v;
+      if (p.y < -4) { p.y = innerHeight + 4; p.x = Math.random() * innerWidth; }
+      ctx.fillStyle = 'rgba(198,240,0,0.22)';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    requestAnimationFrame(frame);
+  }
+  addEventListener('resize', resize);
+  resize();
+  frame();
 })();
 </script>
+<script type="module" src="js/scene3d.js"></script>
 </body>
 </html>
